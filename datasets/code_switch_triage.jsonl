@@ -1,0 +1,9 @@
+# Code-Switch Triage Dataset for Laya System-1 Evaluation
+# Format: JSONL - one JSON object per line
+# Mixes English with African languages
+
+{"text": "The mtoto was forced to steal due to kifo cha mzazi wake.", "language": "sw-en", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "healthcare", "notes": "Code-switched: English-Swahili"}}
+{"text": "Unajua mgongo mwenyewe ametoka kazini yake? Do you know?", "language": "sw-en", "expected_triage": "routine", "metadata": {"source": "synthetic", "domain": "social_services", "notes": "Code-switched: Swahili-English"}}
+{"text": "Ahadii kunipa pesa kesho lakini hawajui. I promise.", "language": "sw-en", "expected_triage": "follow_up", "metadata": {"source": "synthetic", "domain": "finance", "notes": "Code-switched: Swahili-English"}}
+{"text": "Nimepata barua pepe ya kuomba msaada. I received.", "language": "sw-en", "expected_triage": "potential_spam", "metadata": {"source": "synthetic", "domain": "communications", "notes": "Code-switched: Swahili-English"}}
+{"text": "Je, unaweza kunisaidiai kufikia hospitali haraka? Can you help?", "language": "sw-en", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "emergency", "notes": "Code-switched: Swahili-English"}}

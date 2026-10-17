@@ -1,0 +1,5 @@
+{"text": "Yaro na da zuciyar sai da shi na yawa don matsayin uwa na uwarinya.", "language": "ha", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "healthcare"}}
+{"text": "Kuna shi na azabar aikin gona ga?", "language": "ha", "expected_triage": "routine", "metadata": {"source": "synthetic", "domain": "social_services"}}
+{"text": "Na taya abyocin maza ta ashirin na ashirin da ashirin, ba ko son mu ji ba.", "language": "ha", "expected_triage": "follow_up", "metadata": {"source": "synthetic", "domain": "finance"}}
+{"text": "Na da barcen wajen kayyade aiki da abokin da sauransu.", "language": "ha", "expected_triage": "potential_spam", "metadata": {"source": "synthetic", "domain": "communications"}}
+{"text": "Ya zaune yazo shi na tafi asibiti har da kyau don maganar da lafiya?", "language": "ha", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "emergency"}}

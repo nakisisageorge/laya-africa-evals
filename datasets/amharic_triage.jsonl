@@ -1,0 +1,5 @@
+{"text": "ልጁ ከአባቱ ምድብ ነበረ ከፍ ነገር ጋር እንደ ሚያስችል ነበረ፣", "language": "am", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "healthcare"}}
+{"text": "አንደሬ አለቀቅ ኊዜ ያለ ስራ አለቃዊው አይደለሁምን?", "language": "am", "expected_triage": "routine", "metadata": {"source": "synthetic", "domain": "social_services"}}
+{"text": "አንደሬ ከእኛ ዘንድ ገና እንደ ሚሰጠው አይችሉም፣", "language": "am", "expected_triage": "follow_up", "metadata": {"source": "synthetic", "domain": "finance"}}
+{"text": "እኛ አንደሬ አንደበቊ የተለየ አንደክፋት አነሱ፣", "language": "am", "expected_triage": "potential_spam", "metadata": {"source": "synthetic", "domain": "communications"}}
+{"text": "እናንተ እኑደ ሚከተለው እንደ ሚያገኙ አስፈላጊ ከተማ ድርጅት አለቃዊው አለ፣", "language": "am", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "emergency"}}

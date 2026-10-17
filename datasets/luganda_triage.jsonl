@@ -1,0 +1,5 @@
+{"text": "Omwana alabagirwa kutekerebbera ku sabbawa omuzadde waaffe.", "language": "lug", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "healthcare"}}
+{"text": "Oliwamu omusajja omuntuuze zaabwe?", "language": "lug", "expected_triage": "routine", "metadata": {"source": "synthetic", "domain": "social_services"}}
+{"text": "Oyita okusooka sente nekkapa lakini tatekolawo.", "language": "lug", "expected_triage": "follow_up", "metadata": {"source": "synthetic", "domain": "finance"}}
+{"text": "Nnasenze envelope yaffe y’okukomerekedde olugero.", "language": "lug", "expected_triage": "potential_spam", "metadata": {"source": "synthetic", "domain": "communications"}}
+{"text": "Ki, ngesa okukusobola okukufumira ospitaala mu kyeyagalanya?", "language": "lug", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "emergency"}}

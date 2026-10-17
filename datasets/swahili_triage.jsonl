@@ -1,0 +1,5 @@
+{"text": "Mtoto alilazimishwa kukopa kwa sababu ya kifo cha mzazi wake.", "language": "sw", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "healthcare"}}
+{"text": "Unajua mgongo mwenyewe ametoka kazini yake?", "language": "sw", "expected_triage": "routine", "metadata": {"source": "synthetic", "domain": "social_services"}}
+{"text": "Ahadii kunipa pesa kesho lakini hawajui.", "language": "sw", "expected_triage": "follow_up", "metadata": {"source": "synthetic", "domain": "finance"}}
+{"text": "Nimepata barua pepe ya kuomba msaada.", "language": "sw", "expected_triage": "potential_spam", "metadata": {"source": "synthetic", "domain": "communications"}}
+{"text": "Je, unaweza kunisaidiai kufikia hospitali haraka?", "language": "sw", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "emergency"}}

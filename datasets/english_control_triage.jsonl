@@ -1,0 +1,8 @@
+# English Control Triage Dataset for Laya System-1 Evaluation
+# Format: JSONL - one JSON object per line
+
+{"text": "The child was forced to steal due to the death of their parent.", "language": "en", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "healthcare"}}
+{"text": "Do you know where the husband went to work?", "language": "en", "expected_triage": "routine", "metadata": {"source": "synthetic", "domain": "social_services"}}
+{"text": "I promise to pay you tomorrow but they don't know.", "language": "en", "expected_triage": "follow_up", "metadata": {"source": "synthetic", "domain": "finance"}}
+{"text": "I received a spam email asking for help.", "language": "en", "expected_triage": "potential_spam", "metadata": {"source": "synthetic", "domain": "communications"}}
+{"text": "Can you help me get to the hospital quickly?", "language": "en", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "emergency"}}

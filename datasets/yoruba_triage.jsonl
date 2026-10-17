@@ -1,0 +1,5 @@
+{"text": "Omo ti o ni irọrun lori baba ti o ku.", "language": "yo", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "healthcare"}}
+{"text": "Owo ni owo ti aye lati se?", "language": "yo", "expected_triage": "routine", "metadata": {"source": "synthetic", "domain": "social_services"}}
+{"text": "O fi ori mi fun owuro lori owo kanrin laarin ogbon?", "language": "yo", "expected_triage": "follow_up", "metadata": {"source": "synthetic", "domain": "finance"}}
+{"text": "Mo ti gba letta pepe lati pe igbawo.", "language": "yo", "expected_triage": "potential_spam", "metadata": {"source": "synthetic", "domain": "communications"}}
+{"text": "Se o le mi ran lowo lati si ibojo lati je?", "language": "yo", "expected_triage": "urgent", "metadata": {"source": "synthetic", "domain": "emergency"}}
