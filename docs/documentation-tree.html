@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laya Africa Evals - Interactive Documentation Tree</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .tree-container {
+            padding: 20px;
+        }
+        .tree-node {
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .tree-node:hover {
+            background-color: #f8f9fa;
+        }
+        .tree-node.folder {
+            color: #2c3e50;
+            font-weight: 500;
+            border-left: 3px solid #3498db;
+        }
+        .tree-node.file {
+            color: #34495e;
+            border-left: 3px solid #95a5a6;
+        }
+        .tree-node.active {
+            background-color: #e8f4fd;
+        }
+        .tree-children {
+            margin-left: 20px;
+            padding-top: 5px;
+            display: none;
+        }
+        .tree-children.visible {
+            display: block;
+        }
+        .toggle-icon {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+            margin-right: 10px;
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+        .toggle-icon.open {
+            transform: rotate(90deg);
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        .badge-docs { background-color: #e8f4fd; color: #2c3e50; }
+        .badge-code { background-color: #e8f8f5; color: #2c3e50; }
+        .badge-data { background-color: #fdf2e8; color: #2c3e50; }
+        .badge-test { background-color: #fdedec; color: #2c3e50; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Laya Africa Evaluation Suite</h1>
+            <p>Interactive Documentation Tree</p>
+        </div>
+        <div class="tree-container">
+            <div class="tree-node folder" onclick="toggleChildren(this)">
+                <span class="toggle-icon">▶</span>
+                <span>laya-africa-evals</span>
+                <span class="badge badge-code">Root</span>
+            </div>
+            <div class="tree-children" id="root-children">
+                <div class="tree-node folder" onclick="toggleChildren(this)">
+                    <span class="toggle-icon">▶</span>
+                    <span>laya_africa_evals</span>
+                    <span class="badge badge-code">Package</span>
+                </div>
+                <div class="tree-children" id="package-children">
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>__init__.py</span>
+                        <span class="badge badge-code">Package init</span>
+                    </div>
+                </div>
+                
+                <div class="tree-node folder" onclick="toggleChildren(this)">
+                    <span class="toggle-icon">▶</span>
+                    <span>datasets</span>
+                    <span class="badge badge-data">Data</span>
+                </div>
+                <div class="tree-children" id="datasets-children">
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>swahili_triage.jsonl</span>
+                        <span class="badge badge-data">Swahili</span>
+                    </div>
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>luganda_triage.jsonl</span>
+                        <span class="badge badge-data">Luganda</span>
+                    </div>
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>amharic_triage.jsonl</span>
+                        <span class="badge badge-data">Amharic</span>
+                    </div>
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>hausa_triage.jsonl</span>
+                        <span class="badge badge-data">Hausa</span>
+                    </div>
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>yoruba_triage.jsonl</span>
+                        <span class="badge badge-data">Yoruba</span>
+                    </div>
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>english_control_triage.jsonl</span>
+                        <span class="badge badge-data">English Control</span>
+                    </div>
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>code_switch_triage.jsonl</span>
+                        <span class="badge badge-data">Code-switch</span>
+                    </div>
+                </div>
+                
+                <div class="tree-node folder" onclick="toggleChildren(this)">
+                    <span class="toggle-icon">▶</span>
+                    <span>harness</span>
+                    <span class="badge badge-code">Security</span>
+                </div>
+                <div class="tree-children" id="harness-children">
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>guard_harness.py</span>
+                        <span class="badge badge-code">Prompt injection harness</span>
+                    </div>
+                </div>
+                
+                <div class="tree-node folder" onclick="toggleChildren(this)">
+                    <span class="toggle-icon">▶</span>
+                    <span>runners</span>
+                    <span class="badge badge-code">Execution</span>
+                </div>
+                <div class="tree-children" id="runners-children">
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>checkpoint_runners.py</span>
+                        <span class="badge badge-code">Mock & live runners</span>
+                    </div>
+                </div>
+                
+                <div class="tree-node folder" onclick="toggleChildren(this)">
+                    <span class="toggle-icon">▶</span>
+                    <span>results</span>
+                    <span class="badge badge-test">Results</span>
+                </div>
+                <div class="tree-children" id="results-children">
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>mock_results.json</span>
+                        <span class="badge badge-test">Mock evaluation results</span>
+                    </div>
+                </div>
+                
+                <div class="tree-node folder" onclick="toggleChildren(this)">
+                    <span class="toggle-icon">▶</span>
+                    <span>tests</span>
+                    <span class="badge badge-test">Testing</span>
+                </div>
+                <div class="tree-children" id="tests-children">
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>test_basic.py</span>
+                        <span class="badge badge-test">Basic tests</span>
+                    </div>
+                </div>
+                
+                <div class="tree-node folder" onclick="toggleChildren(this)">
+                    <span class="toggle-icon">▶</span>
+                    <span>docs</span>
+                    <span class="badge badge-docs">Documentation</span>
+                </div>
+                <div class="tree-children" id="docs-children">
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>README.md</span>
+                        <span class="badge badge-docs">Main documentation</span>
+                    </div>
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>DESIGN_DOCUMENT.md</span>
+                        <span class="badge badge-docs">Technical design</span>
+                    </div>
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>PORTFOLIO_CASE_STUDY.md</span>
+                        <span class="badge badge-docs">Portfolio case study</span>
+                    </div>
+                </div>
+                
+                <div class="tree-node folder" onclick="toggleChildren(this)">
+                    <span class="toggle-icon">▶</span>
+                    <span>scripts</span>
+                    <span class="badge badge-code">Scripts</span>
+                </div>
+                <div class="tree-children" id="scripts-children">
+                    <div class="tree-node file">
+                        <span class="toggle-icon">▪</span>
+                        <span>demo.py</span>
+                        <span class="badge badge-code">Demo script</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleChildren(element) {
+            const children = element.nextElementSibling;
+            if (children && children.classList.contains('tree-children')) {
+                const isVisible = children.classList.contains('visible');
+                children.classList.toggle('visible', !isVisible);
+                
+                // Update toggle icon
+                const icon = element.querySelector('.toggle-icon');
+                if (icon) {
+                    icon.textContent = isVisible ? '▶' : '▼';
+                }
+                
+                // Update active state
+                document.querySelectorAll('.tree-node').forEach(node => {
+                    node.classList.remove('active');
+                });
+                element.classList.add('active');
+            }
+        }
+        
+        // Initialize first level as open
+        document.addEventListener('DOMContentLoaded', function() {
+            const rootNodes = document.querySelectorAll('.tree-container > .tree-node.folder');
+            rootNodes.forEach(node => {
+                const children = node.nextElementSibling;
+                if (children && children.classList.contains('tree-children')) {
+                    children.classList.add('visible');
+                    const icon = node.querySelector('.toggle-icon');
+                    if (icon) icon.textContent = '▼';
+                }
+                node.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

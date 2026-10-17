@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laya Africa Evals - Architecture Visualization</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2rem;
+        }
+        .header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        .architecture {
+            padding: 30px;
+        }
+        .architecture-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        .architecture-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 20px 0;
+        }
+        .component {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            width: 220px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .component:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
+        }
+        .component h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .component h3::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 8px;
+            border-radius: 3px;
+        }
+        .component.data { border-left-color: #20c997; }
+        .component.data h3::before { background-color: #20c997; }
+        .component.security { border-left-color: #fd7e14; }
+        .component.security h3::before { background-color: #fd7e14; }
+        .component.execution { border-left-color: #6f42c1; }
+        .component.execution h3::before { background-color: #6f42c1; }
+        .component.flow { border-left-color: #ffc107; }
+        .component.flow h3::before { background-color: #ffc107; }
+        .component ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0 0;
+        }
+        .component li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f3f5;
+            font-size: 0.9rem;
+            color: #495057;
+        }
+        .component li:last-child {
+            border-bottom: none;
+        }
+        .component li::before {
+            content: "•";
+            color: #667eea;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        .connection {
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            transform-origin: top;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Laya Africa Evaluation Suite</h1>
+            <p>Architecture Visualization</p>
+        </div>
+        <div class="architecture">
+            <h2 class="architecture-title">System Architecture</h2>
+            <div class="architecture-diagram">
+                <!-- Data Component -->
+                <div class="component data">
+                    <h3>📊 African-Language Datasets</h3>
+                    <ul>
+                        <li>Swahili Triage Dataset</li>
+                        <li>Luganda Triage Dataset</li>
+                        <li>Amharic Triage Dataset</li>
+                        <li>Hausa Triage Dataset</li>
+                        <li>Yoruba Triage Dataset</li>
+                        <li>English Control Dataset</li>
+                        <li>Code-switch Triage Dataset</li>
+                    </ul>
+                </div>
+                
+                <!-- Security Component -->
+                <div class="component security">
+                    <h3>🔐 Prompt Injection Harness</h3>
+                    <ul>
+                        <li>GuardRobustness Evaluation</li>
+                        <li>Multiple Injection Types</li>
+                        <li>Direct, Indirect, Role-play</li>
+                        <li>Context-ignore, Length-based</li>
+                        <li>Encoding-based Attacks</li>
+                        <li>Severity-based Classification</li>
+                    </ul>
+                </div>
+                
+                <!-- Execution Component -->
+                <div class="component execution">
+                    <h3>⚡ Evaluation Runners</h3>
+                    <ul>
+                        <li>MockRunner (Fast Testing)</li>
+                        <li>LiveCheckpointRunner</li>
+                        <li>Deterministic Results</li>
+                        <li>Memory-efficient Processing</li>
+                        <li>Batch Processing Support</li>
+                    </ul>
+                </div>
+                
+                <!-- Flow Component -->
+                <div class="component flow">
+                    <h3>🔄 Evaluation Flow</h3>
+                    <ul>
+                        <li>Dataset Loading</li>
+                        <li>Runner Selection</li>
+                        <li>Model Inference (Mock/Live)</li>
+                        <li>Results Collection</li>
+                        <li>Metrics Calculation</li>
+                        <li>Report Generation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Connection lines would go here in a more complex implementation -->
+            <div style="text-align: center; margin: 30px 0; color: #6c757d; font-style: italic;">
+                Data flows from Datasets → Runners → (optional: Harness for security eval) → Results → Reports
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #20c997;"></div>
+                    <span>Data Component</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #fd7e14;"></div>
+                    <span>Security Component</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #6f42c1;"></div>
+                    <span>Execution Component</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #ffc107;"></div>
+                    <span>Evaluation Flow</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            Laya Africa Evaluation Suite • GICT Africa Technologies • https://gictafrica.com
+        </div>
+    </div>
+</body>
+</html>
