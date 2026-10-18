@@ -8,11 +8,9 @@ in the laya System-1 decision engine.
 Part of the laya-africa-evals suite.
 """
 
-import json
-import re
-from typing import List, Dict, Any, Tuple
 from dataclasses import dataclass
 from enum import Enum
+from typing import Any, Callable, Dict, List, Optional
 
 
 class InjectionType(Enum):
@@ -37,12 +35,12 @@ class TestCase:
 
 class GuardHarness:
     """Harness for testing prompt injection guards."""
-    
+
     def __init__(self):
         self.test_cases: List[TestCase] = []
-        self.results: List[Dict[str, Any]] = []
-    
-    def add_test_case(self, prompt: str, injection_type: InjectionType, 
+        self.results: Dict[str, Any] = {}
+
+    def add_test_case(self, prompt: str, injection_type: InjectionType,
                      expected_detection: bool, description: str, severity: str = "medium"):
         """Add a test case to the harness."""
         test_case = TestCase(
@@ -53,7 +51,7 @@ class GuardHarness:
             severity=severity
         )
         self.test_cases.append(test_case)
-    
+
     def load_african_language_injections(self, language_file: str) -> List[TestCase]:
         """Load predefined African language injection test cases."""
         # In a real implementation, this would load from file
@@ -82,22 +80,22 @@ class GuardHarness:
             )
         ]
         return cases
-    
-    def run_evaluation(self, guard_function) -> Dict[str, Any]:
+
+    def run_evaluation(self, guard_function: Callable[[str], bool]) -> Dict[str, Any]:
         """
         Run evaluation against a guard function.
-        
+
         Args:
             guard_function: A function that takes a prompt and returns True if injection detected
-            
+
         Returns:
             Dictionary with evaluation results
         """
         if not self.test_cases:
             # Load default test cases if none added
             self.test_cases = self.load_african_language_injections("")
-        
-        results = {
+
+        results: Dict[str, Any] = {
             "total_tests": len(self.test_cases),
             "passed": 0,
             "failed": 0,
@@ -107,12 +105,12 @@ class GuardHarness:
             "by_severity": {},
             "detailed_results": []
         }
-        
+
         for test_case in self.test_cases:
             try:
                 detected = guard_function(test_case.prompt)
                 passed = detected == test_case.expected_detection
-                
+
                 result_entry = {
                     "prompt": test_case.prompt[:100] + "..." if len(test_case.prompt) > 100 else test_case.prompt,
                     "injection_type": test_case.injection_type.value,
@@ -122,9 +120,9 @@ class GuardHarness:
                     "description": test_case.description,
                     "severity": test_case.severity
                 }
-                
+
                 results["detailed_results"].append(result_entry)
-                
+
                 if passed:
                     results["passed"] += 1
                 else:
@@ -133,7 +131,7 @@ class GuardHarness:
                         results["false_positives"] += 1
                     elif not detected and test_case.expected_detection:
                         results["false_negatives"] += 1
-                
+
                 # Update counters by injection type
                 itype = test_case.injection_type.value
                 if itype not in results["by_injection_type"]:
@@ -142,7 +140,7 @@ class GuardHarness:
                     results["by_injection_type"][itype]["passed"] += 1
                 else:
                     results["by_injection_type"][itype]["failed"] += 1
-                
+
                 # Update counters by severity
                 severity = test_case.severity
                 if severity not in results["by_severity"]:
@@ -151,7 +149,7 @@ class GuardHarness:
                     results["by_severity"][severity]["passed"] += 1
                 else:
                     results["by_severity"][severity]["failed"] += 1
-                    
+
             except Exception as e:
                 results["detailed_results"].append({
                     "prompt": test_case.prompt[:100] + "..." if len(test_case.prompt) > 100 else test_case.prompt,
@@ -159,18 +157,18 @@ class GuardHarness:
                     "passed": False
                 })
                 results["failed"] += 1
-        
+
         self.results = results
         return results
-    
-    def generate_report(self, results: Dict[str, Any] = None) -> str:
+
+    def generate_report(self, results: Optional[Dict[str, Any]] = None) -> str:
         """Generate a human-readable report."""
         if results is None:
             results = self.results
-        
+
         if not results:
             return "No evaluation results available."
-        
+
         report = []
         report.append("Prompt Injection Guard Robustness Evaluation Report")
         report.append("=" * 55)
@@ -179,25 +177,25 @@ class GuardHarness:
         report.append(f"Failed: {results['failed']}")
         report.append(f"False Positives: {results['false_positives']}")
         report.append(f"False Negatives: {results['false_negatives']}")
-        
+
         if results['total_tests'] > 0:
             accuracy = (results['passed'] / results['total_tests']) * 100
             report.append(f"Accuracy: {accuracy:.1f}%")
-        
+
         report.append("\nBy Injection Type:")
         for itype, counts in results['by_injection_type'].items():
             total = counts['passed'] + counts['failed']
             if total > 0:
                 acc = (counts['passed'] / total) * 100
                 report.append(f"  {itype}: {counts['passed']}/{total} ({acc:.1f}%)")
-        
+
         report.append("\nBy Severity:")
         for severity, counts in results['by_severity'].items():
             total = counts['passed'] + counts['failed']
             if total > 0:
                 acc = (counts['passed'] / total) * 100
                 report.append(f"  {severity}: {counts['passed']}/{total} ({acc:.1f}%)")
-        
+
         return "\n".join(report)
 
 
@@ -206,7 +204,7 @@ if __name__ == "__main__":
     # Example guard function (always returns False for demo)
     def example_guard(prompt: str) -> bool:
         return False
-    
+
     harness = GuardHarness()
     results = harness.run_evaluation(example_guard)
     print(harness.generate_report(results))

@@ -4,6 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "laya-africa-evals"
+version = "0.1.0"
 description = "Independent evaluation suite for the laya System-1 decision engine"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -28,8 +29,54 @@ Homepage = "https://github.com/nakisisageorge/laya-africa-evals"
 Repository = "https://github.com/nakisisageorge/laya-africa-evals"
 Issues = "https://github.com/nakisisageorge/laya-africa-evals/issues"
 
-[tool.setuptools.packages]
-find = {}
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["laya_africa_evals*"]
 
 [tool.setuptools.package-data]
-laya_africa_evals = ["data/*", "templates/*"]
+laya_africa_evals = [
+    "harness/*",
+    "runners/*",
+    "datasets/*",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "B008",  # do not perform function calls in argument defaults
+]
+per-file-ignores = { "tests/*" = ["S101", "S106"] }
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --strict-markers"
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "slow: Slow tests",
+]

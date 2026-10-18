@@ -2,10 +2,10 @@
 Basic tests for the laya-africa-evals package.
 """
 
-import unittest
-import os
 import json
+import unittest
 from pathlib import Path
+
 
 class TestLayaAfricaEvals(unittest.TestCase):
     """Test cases for the laya-africa-evals package."""
@@ -14,8 +14,8 @@ class TestLayaAfricaEvals(unittest.TestCase):
         """Set up test fixtures."""
         self.package_dir = Path("laya_africa_evals")
         self.datasets_dir = Path("datasets")
-        self.harness_dir = Path("harness")
-        self.runners_dir = Path("runners")
+        self.harness_dir = Path("laya_africa_evals/harness")
+        self.runners_dir = Path("laya_africa_evals/runners")
 
     def test_package_exists(self):
         """Test that the main package directory exists."""
@@ -40,7 +40,7 @@ class TestLayaAfricaEvals(unittest.TestCase):
     def test_dataset_format(self):
         """Test that dataset files are valid JSONL."""
         swahili_file = self.datasets_dir / "swahili_triage.jsonl"
-        with open(swahili_file, 'r', encoding='utf-8') as f:
+        with open(swahili_file, encoding='utf-8') as f:
             for i, line in enumerate(f):
                 if line.strip():  # Skip empty lines
                     try:
@@ -82,7 +82,7 @@ class TestLayaAfricaEvals(unittest.TestCase):
     def test_mock_results_format(self):
         """Test that mock results file is valid JSON."""
         mock_results = Path("results/mock_results.json")
-        with open(mock_results, 'r', encoding='utf-8') as f:
+        with open(mock_results, encoding='utf-8') as f:
             try:
                 data = json.load(f)
                 self.assertIn("evaluation_summary", data)
