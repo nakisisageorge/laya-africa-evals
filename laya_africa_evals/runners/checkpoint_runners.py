@@ -20,7 +20,9 @@ class MockRunner:
         self.mock_data_dir = Path(mock_data_dir)
         self.mock_data_dir.mkdir(parents=True, exist_ok=True)
 
-    def run_triage_evaluation(self, dataset_path: str, model_version: str = "mock-v1.0") -> Dict[str, Any]:
+    def run_triage_evaluation(
+        self, dataset_path: str, model_version: str = "mock-v1.0"
+    ) -> Dict[str, Any]:
         """
         Run triage evaluation using mock results.
 
@@ -33,7 +35,7 @@ class MockRunner:
         """
         # Load dataset
         examples = []
-        with open(dataset_path, encoding='utf-8') as f:
+        with open(dataset_path, encoding="utf-8") as f:
             for line in f:
                 if line.strip():
                     examples.append(json.loads(line))
@@ -45,22 +47,26 @@ class MockRunner:
         for example in examples:
             # Simulate model prediction with some randomness for realism
             # In reality, this would be: prediction = model.predict(example['text'])
-            predicted = example['expected_triage'] if random.random() > 0.1 else random.choice([
-                "urgent", "routine", "follow_up", "potential_spam"
-            ])
+            predicted = (
+                example["expected_triage"]
+                if random.random() > 0.1
+                else random.choice(["urgent", "routine", "follow_up", "potential_spam"])
+            )
 
-            is_correct = predicted == example['expected_triage']
+            is_correct = predicted == example["expected_triage"]
             if is_correct:
                 correct += 1
 
-            results.append({
-                "text": example['text'],
-                "language": example['language'],
-                "expected": example['expected_triage'],
-                "predicted": predicted,
-                "correct": is_correct,
-                "metadata": example.get('metadata', {})
-            })
+            results.append(
+                {
+                    "text": example["text"],
+                    "language": example["language"],
+                    "expected": example["expected_triage"],
+                    "predicted": predicted,
+                    "correct": is_correct,
+                    "metadata": example.get("metadata", {}),
+                }
+            )
 
         accuracy = correct / len(examples) if examples else 0
 
@@ -70,13 +76,13 @@ class MockRunner:
             "total_examples": len(examples),
             "correct_predictions": correct,
             "accuracy": accuracy,
-            "results": results
+            "results": results,
         }
 
     def save_results(self, results: Dict[str, Any], dataset_name: str):
         """Save results to mock data directory."""
         output_file = self.mock_data_dir / f"{dataset_name}_results.json"
-        with open(output_file, 'w', encoding='utf-8') as f:
+        with open(output_file, "w", encoding="utf-8") as f:
             json.dump(results, f, indent=2)
         return output_file
 
@@ -106,13 +112,15 @@ class LiveCheckpointRunner:
         if not checkpoint_path.exists():
             # Create a dummy checkpoint file for demonstration
             checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
-            with open(checkpoint_path, 'w') as f:
+            with open(checkpoint_path, "w") as f:
                 f.write("# Mock checkpoint file\n")
                 f.write("# In real implementation, this would contain model weights\n")
 
         return {"checkpoint_name": checkpoint_name, "status": "mock_loaded"}
 
-    def run_triage_evaluation(self, dataset_path: str, checkpoint_name: str = "laya-multilingual") -> Dict[str, Any]:
+    def run_triage_evaluation(
+        self, dataset_path: str, checkpoint_name: str = "laya-multilingual"
+    ) -> Dict[str, Any]:
         """
         Run triage evaluation using a live checkpoint.
 
@@ -128,7 +136,7 @@ class LiveCheckpointRunner:
 
         # Load dataset
         examples = []
-        with open(dataset_path, encoding='utf-8') as f:
+        with open(dataset_path, encoding="utf-8") as f:
             for line in f:
                 if line.strip():
                     examples.append(json.loads(line))
@@ -140,22 +148,26 @@ class LiveCheckpointRunner:
 
         for example in examples:
             # Simulate slightly better performance than mock runner for "live" checkpoint
-            predicted = example['expected_triage'] if random.random() > 0.05 else random.choice([
-                "urgent", "routine", "follow_up", "potential_spam"
-            ])
+            predicted = (
+                example["expected_triage"]
+                if random.random() > 0.05
+                else random.choice(["urgent", "routine", "follow_up", "potential_spam"])
+            )
 
-            is_correct = predicted == example['expected_triage']
+            is_correct = predicted == example["expected_triage"]
             if is_correct:
                 correct += 1
 
-            results.append({
-                "text": example['text'],
-                "language": example['language'],
-                "expected": example['expected_triage'],
-                "predicted": predicted,
-                "correct": is_correct,
-                "metadata": example.get('metadata', {})
-            })
+            results.append(
+                {
+                    "text": example["text"],
+                    "language": example["language"],
+                    "expected": example["expected_triage"],
+                    "predicted": predicted,
+                    "correct": is_correct,
+                    "metadata": example.get("metadata", {}),
+                }
+            )
 
         accuracy = correct / len(examples) if examples else 0
 
@@ -165,7 +177,7 @@ class LiveCheckpointRunner:
             "total_examples": len(examples),
             "correct_predictions": correct,
             "accuracy": accuracy,
-            "results": results
+            "results": results,
         }
 
 

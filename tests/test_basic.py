@@ -19,8 +19,10 @@ class TestLayaAfricaEvals(unittest.TestCase):
 
     def test_package_exists(self):
         """Test that the main package directory exists."""
-        self.assertTrue(self.package_dir.exists() and self.package_dir.is_dir(),
-                       "laya_africa_evals package directory should exist")
+        self.assertTrue(
+            self.package_dir.exists() and self.package_dir.is_dir(),
+            "laya_africa_evals package directory should exist",
+        )
 
     def test_init_file_exists(self):
         """Test that __init__.py exists in the package."""
@@ -29,8 +31,10 @@ class TestLayaAfricaEvals(unittest.TestCase):
 
     def test_datasets_directory_exists(self):
         """Test that datasets directory exists."""
-        self.assertTrue(self.datasets_dir.exists() and self.datasets_dir.is_dir(),
-                       "datasets directory should exist")
+        self.assertTrue(
+            self.datasets_dir.exists() and self.datasets_dir.is_dir(),
+            "datasets directory should exist",
+        )
 
     def test_swahili_dataset_exists(self):
         """Test that Swahili dataset file exists."""
@@ -40,18 +44,20 @@ class TestLayaAfricaEvals(unittest.TestCase):
     def test_dataset_format(self):
         """Test that dataset files are valid JSONL."""
         swahili_file = self.datasets_dir / "swahili_triage.jsonl"
-        with open(swahili_file, encoding='utf-8') as f:
+        with open(swahili_file, encoding="utf-8") as f:
             for i, line in enumerate(f):
                 if line.strip():  # Skip empty lines
                     try:
                         json.loads(line)
                     except json.JSONDecodeError:
-                        self.fail(f"Line {i+1} in {swahili_file} is not valid JSON")
+                        self.fail(f"Line {i + 1} in {swahili_file} is not valid JSON")
 
     def test_harness_directory_exists(self):
         """Test that harness directory exists."""
-        self.assertTrue(self.harness_dir.exists() and self.harness_dir.is_dir(),
-                       "harness directory should exist")
+        self.assertTrue(
+            self.harness_dir.exists() and self.harness_dir.is_dir(),
+            "harness directory should exist",
+        )
 
     def test_guard_harness_exists(self):
         """Test that guard harness module exists."""
@@ -60,8 +66,10 @@ class TestLayaAfricaEvals(unittest.TestCase):
 
     def test_runners_directory_exists(self):
         """Test that runners directory exists."""
-        self.assertTrue(self.runners_dir.exists() and self.runners_dir.is_dir(),
-                       "runners directory should exist")
+        self.assertTrue(
+            self.runners_dir.exists() and self.runners_dir.is_dir(),
+            "runners directory should exist",
+        )
 
     def test_checkpoint_runners_exists(self):
         """Test that checkpoint runners module exists."""
@@ -71,8 +79,9 @@ class TestLayaAfricaEvals(unittest.TestCase):
     def test_results_directory_exists(self):
         """Test that results directory exists."""
         results_dir = Path("results")
-        self.assertTrue(results_dir.exists() and results_dir.is_dir(),
-                       "results directory should exist")
+        self.assertTrue(
+            results_dir.exists() and results_dir.is_dir(), "results directory should exist"
+        )
 
     def test_mock_results_exists(self):
         """Test that mock results file exists."""
@@ -82,7 +91,7 @@ class TestLayaAfricaEvals(unittest.TestCase):
     def test_mock_results_format(self):
         """Test that mock results file is valid JSON."""
         mock_results = Path("results/mock_results.json")
-        with open(mock_results, encoding='utf-8') as f:
+        with open(mock_results, encoding="utf-8") as f:
             try:
                 data = json.load(f)
                 self.assertIn("evaluation_summary", data)
@@ -112,5 +121,5 @@ class TestLayaAfricaEvals(unittest.TestCase):
         self.assertTrue(case_study_file.exists(), "PORTFOLIO_CASE_STUDY.md should exist")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -12,6 +12,7 @@ current_dir = Path(__file__).parent.absolute()
 sys.path.insert(0, str(current_dir))
 sys.path.insert(0, str(current_dir.parent))
 
+
 def main():
     """Run a quick demonstration of the evaluation suite."""
     print("Laya Africa Evaluation Suite - Demo")
@@ -20,6 +21,7 @@ def main():
     # Check if we can import the package
     try:
         import laya_africa_evals as _  # noqa: F401
+
         print("✓ Successfully imported laya_africa_evals package")
     except ImportError as e:
         print(f"✗ Failed to import laya_africa_evals: {e}")
@@ -27,6 +29,7 @@ def main():
         try:
             sys.path.insert(0, os.getcwd())
             import laya_africa_evals as _  # noqa: F401
+
             print("✓ Successfully imported laya_africa_evals package (alternative path)")
         except ImportError as e2:
             print(f"✗ Failed to import laya_africa_evals: {e2}")
@@ -51,6 +54,7 @@ def main():
             print("✓ Mock results file found")
             try:
                 import json
+
                 with open(mock_results) as f:
                     data = json.load(f)
                 accuracy = data.get("evaluation_summary", {}).get("overall_accuracy", 0)
@@ -77,6 +81,7 @@ def main():
     print("  python -m tests.test_basic")
 
     return 0
+
 
 if __name__ == "__main__":
     sys.exit(main())
