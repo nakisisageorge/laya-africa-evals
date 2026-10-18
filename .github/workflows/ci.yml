@@ -115,7 +115,7 @@ jobs:
         run: bandit -r laya_africa_evals/ -f json -o bandit-report.json || true
 
       - name: Run safety (dependency vulnerability scan)
-        run: safety check --json --output safety-report.json || true
+        run: safety check --json > safety-report.json 2>&1 || true
 
       - name: Upload security reports
         uses: actions/upload-artifact@v4
